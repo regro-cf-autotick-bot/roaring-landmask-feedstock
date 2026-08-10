@@ -4,6 +4,7 @@ set -ex
 
 # Set conda CC as custom CC in Rust
 export CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER=$CC
+export CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER=$CC
 export CARGO_TARGET_X86_64_APPLE_DARWIN_LINKER=$CC
 export CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER=$CC
 
@@ -14,6 +15,6 @@ rustc --version
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 
 # Install wheel manually
-export MATURIN_PEP517_ARGS="--features static,extension-module -vv"
+export MATURIN_PEP517_ARGS="--features extension-module,nightly -vv"
 
 $PYTHON -m pip install . --no-deps --ignore-installed -vv

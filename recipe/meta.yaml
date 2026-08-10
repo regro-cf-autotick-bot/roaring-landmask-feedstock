@@ -1,5 +1,5 @@
 {% set name = "roaring-landmask" %}
-{% set version = "0.10.1" %}
+{% set version = "0.11.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,22 +7,17 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/roaring_landmask-{{ version }}.tar.gz
-  sha256: ba2ac75aaca1cd1cc19d1cf47991428ce0eb1225a6ea9de78caef2698ba8cf5f
+  sha256: 551dd95d3c6b735ccea102b45bd0996b39581486a9934923265e87edfb3fdd15
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
-    - cmake <4
-    - make
-    - pkg-config
-    - python
+    - python                              # [build_platform != target_platform]
     - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - maturin                             # [build_platform != target_platform]
     - {{ stdlib("c") }}
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
     - {{ compiler('rust') }}
   host:
     - python
